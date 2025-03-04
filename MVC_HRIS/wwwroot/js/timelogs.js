@@ -573,7 +573,8 @@ function initializeDataTable() {
             {
                 "title": "Status",
                 "data": "statusName"
-            },
+            }
+            ,
             {
                 "title": "Action",
                 "data": "id",
