@@ -38,12 +38,12 @@
 }
 
 .sidebar .sidebar-content {*/
-    /* display: none; */
-    /*    flex-direction: column;
+/* display: none; */
+/*    flex-direction: column;
             margin-top: 30px;
             padding-left: 10px;
             height:60vh; */
-    /*display: flex;
+/*display: flex;
     flex-direction: column;
     margin-top: 30px;
     padding-left: 10px;
@@ -88,7 +88,7 @@
     background-size: cover;
     background-position: left;
     transform: scale(0.8);*/
-    /*      transition: background-image 0.2s ease-in;
+/*      transition: background-image 0.2s ease-in;
                     transform: scale(0.8); */
 /*}
 
@@ -229,7 +229,7 @@ li {
 
 #mysidebar.active {
     width: 250px !important;
-    overflow: hidden !important  ;
+    overflow: hidden !important;
 }
 
     #mysidebar.active ~ .toggle-bar {
@@ -265,7 +265,7 @@ li {
 .sidebar ul.sub-nav:hover {
     height: auto;
 }*/
-    .footer-end {
+.footer-end {
     position: absolute !important;
     bottom: 0 !important;
     left: 0 !important;
@@ -299,7 +299,7 @@ li {
     margin-top: 40px;
     padding-left: 10px;
     height: 100vh;
-    border-top:dotted 2px var(--secondary-light);
+    border-top: dotted 2px var(--secondary-light);
 }
 
 #mysidebar.active .img-container {
@@ -354,30 +354,33 @@ li {
 
         .sidebar ul.sub-nav li > a {
             width: 100%;
-            color:var(--light);
+            color: var(--light);
         }
 
 /*li.maintenance:hover ~ .sub-nav {
     height: auto;
     color:white;
 }*/
-#maintenanceArrow{
+#maintenanceArrow {
     margin-left: 50px;
 }
+
 .sub-nav {
     height: auto !important;
     color: white;
     display: none;
 }
-.sub-nav
-{
-    margin-left:20px;
-    color:white !important;
-}
-.sub-nav.active {
-    margin-left: 40px;
+
+.sub-nav {
+    margin-left: 20px;
     color: white !important;
 }
+
+    .sub-nav.active {
+        margin-left: 40px;
+        color: white !important;
+    }
+
 .sidebar ul.sub-nav:hover {
     height: auto;
 }

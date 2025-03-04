@@ -122,7 +122,7 @@ namespace AOPC.Controllers
             string status = "";
             try
             {
-                //var pass3 = Cryptography.Decrypt("8UFD7eD4sGtZ9r7Y1QXOc5qaxX7LBbkxTOEXLSlAZj0=");
+                //var pass3 = Cryptography.Encrypt("odecciaccounting2025!");
                 string sql = $@"SELECT    ODC_HRIS.dbo.tbl_UsersModel.Id, ODC_HRIS.dbo.tbl_UsersModel.Username, ODC_HRIS.dbo.tbl_UsersModel.Password, ODC_HRIS.dbo.tbl_UsersModel.Fullname, ODC_HRIS.dbo.tbl_UsersModel.Fname, ODC_HRIS.dbo.tbl_UsersModel.Lname, 
                              ODC_HRIS.dbo.tbl_UsersModel.Mname, ODC_HRIS.dbo.tbl_UsersModel.Email, ODC_HRIS.dbo.tbl_UsersModel.Gender, ODC_HRIS.dbo.tbl_UsersModel.EmployeeID, ODC_HRIS.dbo.tbl_UsersModel.JWToken, 
                              ODC_HRIS.dbo.tbl_UsersModel.FilePath, ODC_HRIS.dbo.tbl_UsersModel.Active as ActiveStatusId, ODC_HRIS.dbo.tbl_UsersModel.Cno, ODC_HRIS.dbo.tbl_UsersModel.Address, ODC_HRIS.dbo.tbl_StatusModel.id AS StatusId, 

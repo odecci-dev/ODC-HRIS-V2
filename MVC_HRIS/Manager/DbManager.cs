@@ -37,7 +37,7 @@ namespace API_HRIS.Manager
 
         public void ConnectioStr()
         {
-            //cnnstr = "Data Source=SP_LABARASONA;Database=ODC_HRIS;User ID=test;Password=1234";
+           // cnnstr = "Data Source=LAPTOP-SULGD5RQ;Database=ODC_HRIS;User ID=test;Password=1234";
             //cnnstr = "Data Source=EC2AMAZ-V52FJK1;Database=ODC_HRIS;User ID=test;Password=1234";
             cnnstr = "Data Source=DESKTOP-9P0BJ07;Initial Catalog=ODC_HRIS;User ID=test;Password=1234";
            // cnnstr = "Data Source=LAPTOP-3191GBJB\\SQLEXPRESS;Initial Catalog=ODC_HRIS;User ID=test;Password=1234;"; // France

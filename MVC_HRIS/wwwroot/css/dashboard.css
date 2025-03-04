@@ -653,3 +653,127 @@ label[for="img"] {
     width: 100%;
     height: 100%;
 }
+#userhour-table_length {
+    display: none !important;
+}
+
+.dash-maincontainer {
+    margin: 0px 0px 0px 40px;
+    padding-right: 50px;
+    display: flex;
+}
+
+.d-none {
+    display: none;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.w-70 {
+    width: 70%;
+}
+
+.d-flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.d-flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.shadow-effect {
+    padding: 25px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+.h-100 {
+    height: 100%
+}
+
+.b-g-primary {
+    background-color: var(--dark);
+    color: white;
+}
+
+.gap-35 {
+    gap: 35px;
+}
+.gap-20 {
+    gap: 20px;
+}
+.pad-15 {
+    padding: 15px;
+}
+
+.border-bot {
+    border-bottom: 1px solid var(--shadow);
+}
+
+.border-left {
+    border-left: 1px solid var(--shadow);
+}
+
+@@media (max-width: 768px) {
+    .fc {
+        font-size: 12px; /* Reduce font size */
+    }
+
+    .fc-dayGridMonth-view .fc-day-number {
+        font-size: 10px; /* Smaller day numbers */
+    }
+
+    .fc-toolbar-title {
+        font-size: 16px; /* Smaller header text */
+    }
+
+    .fc-header-toolbar {
+        flex-wrap: wrap; /* Stack toolbar buttons */
+    }
+}
+
+.t-emp {
+    margin: 0 auto;
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.sub-t-emp {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+#userhour-table th,
+#userhour-table td {
+    text-align: center; /* Align text center */
+    vertical-align: middle; /* Align vertically */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+/* Ensure proper layout */
+.dataTables_scrollHeadInner,
+#userhour-table {
+    width: 100% !important;
+}
+
+    /* Fix header height */
+    #userhour-table thead th {
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+/* Responsive adjustments */
+@@media (max-width: 768px) {
+    #userhour-table thead th {
+        font-size: 12px;
+        padding: 5px;
+    }
+}

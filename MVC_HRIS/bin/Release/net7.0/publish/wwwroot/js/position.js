@@ -48,7 +48,7 @@ async function position() {
             pmodal.style.display = "none";
             initializeDataTable();
         });
-        
+
     });
     // Edit Time Logs
     $('#pos-table').on('click', '.edit-table', function () {
@@ -56,7 +56,7 @@ async function position() {
         var date = $(this).data('date');
         var posname = $(this).data('name');
         var posdesc = $(this).data('description');
-        
+
 
         // Extract the date and time part from the string
         //let dateParts = new Date().split(" ")[0].split("/"); // Get "05/01/2025"
@@ -71,8 +71,8 @@ async function position() {
         document.getElementById('desc').value = posdesc;
         pmodal.style.display = "flex";
     });
-   
-    
+
+
 }
 
 function delete_item() {
@@ -83,13 +83,13 @@ function delete_item() {
     var posname = localStorage.getItem('posname');
     var posdesc = localStorage.getItem('posdesc');
 
-    
+
     //var mtldate = localStorage.getItem('dateString');
     //var mtltimein = localStorage.getItem('timein');
     //var mtltimeout = localStorage.getItem('timein');
     //var manualtask = localStorage.getItem('task');
     //var mtlremarks = localStorage.getItem('remarks');
-    
+
     var data = {};
     data.id = posid;
     console.log(data);

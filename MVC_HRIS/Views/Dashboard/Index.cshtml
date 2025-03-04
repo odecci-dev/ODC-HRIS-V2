@@ -11,125 +11,6 @@
 }
 
 <style>
-    #userhour-table_length
-    {
-        display:none !important;
-    }
-    .dash-maincontainer {
-        margin: 0px 0px 0px 40px;
-        padding-right: 50px;
-        display:flex;
-
-    }
-    .d-none
-    {
-        display:none;
-    }
-    .w-100 {
-        width: 100%;
-    }
-
-    .w-70 {
-        width: 70%;
-    }
-    .d-flex-row {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .d-flex-col {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .shadow-effect {
-        padding: 25px;
-        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-        border-radius: 10px;
-    }
-
-    .h-100 {
-        height: 100%
-    }
-    .b-g-primary
-    {
-        background-color:var(--dark);
-        color:white;
-    }
-    .gap-15 {
-        gap: 35px;
-    }
-    .pad-15
-    {
-        padding:15px;
-    }
-    .border-bot
-    {
-        border-bottom: 1px solid var(--shadow);
-
-    }
-    .border-left
-    {
-        border-left: 1px solid var(--shadow);
-    }
-    @@media (max-width: 768px) {
-        .fc {
-            font-size: 12px; /* Reduce font size */
-        }
-
-        .fc-dayGridMonth-view .fc-day-number {
-            font-size: 10px; /* Smaller day numbers */
-        }
-
-        .fc-toolbar-title {
-            font-size: 16px; /* Smaller header text */
-        }
-
-        .fc-header-toolbar {
-            flex-wrap: wrap; /* Stack toolbar buttons */
-        }    
-}
-.t-emp
-{
-        margin: 0 auto;
-        display: flex;
-        height: 100%;
-        align-items: center;
-}
-.sub-t-emp
-{
-        width: 100%;
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
-}
-#userhour-table th,
-#userhour-table td {
-    text-align: center; /* Align text center */
-    vertical-align: middle; /* Align vertically */
-    white-space: nowrap; /* Prevent wrapping */
-}
-
-/* Ensure proper layout */
-.dataTables_scrollHeadInner,
-#userhour-table {
-    width: 100% !important;
-}
-
-/* Fix header height */
-#userhour-table thead th {
-    padding: 10px;
-    text-align: center;
-    font-weight: bold;
-}
-
-/* Responsive adjustments */
-@@media (max-width: 768px) {
-    #userhour-table thead th {
-        font-size: 12px;
-        padding: 5px;
-    }
-}
 
 </style>
 <div id="emp-main-container">
@@ -141,10 +22,10 @@
     </div>
 
     <div class="dash-maincontainer">
-        <div class="d-flex-row w-100 gap-15">
-            <div class="d-flex-col w-100 gap-15">
+        <div class="d-flex-row w-100 gap-35">
+            <div class="d-flex-col w-100 gap-35">
                 <div class="w-100 shadow-effect h-100">
-                    <div class="d-flex-row w-100 h-100  gap-15">
+                    <div class="d-flex-row w-100 h-100  gap-35">
                         <div class="w-70  b-g-primary d-flex-col shadow-effect">
                             <div class="pad-15 t-emp">
                                 <label style="font-size:20px;">Total Employees<label>
@@ -230,7 +111,17 @@
                         </div>
 
                         <div class="g-15">
-
+                            <div class="d-flex-row w-100 gap-35">
+                            
+                                <input type="date" id="datefrom" class="mod-inputs-nw" placeholder="Date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                <input type="date" id="dateto" class="mod-inputs-nw" placeholder="Date" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                                <select id="emp_type2" required class="utype w-100" style="margin-top: 0px !important;">
+                                </select>
+                                <div class="w-100">
+                                </div>
+                                <div class="w-100">
+                                </div>
+                            </div>
                             <table id="userhour-table" class="table table-bordered table-hover w-100">
                                 <thead>
                                 </thead>
@@ -251,10 +142,10 @@
         </div>
     </div>
     <div class="dash-maincontainer h-100">
-        @* <div class="d-flex-row w-100 gap-15">
-            <div class="d-flex-col w-100 gap-15">
+        @* <div class="d-flex-row w-100 gap-35">
+            <div class="d-flex-col w-100 gap-35">
                 <div class="w-100 shadow-effect h-100">
-                    <div class="d-flex-row w-100 h-100  gap-15">
+                    <div class="d-flex-row w-100 h-100  gap-35">
                         <div class="w-70  b-g-primary d-flex-col shadow-effect">
                             <div class="pad-15 t-emp">
                                 <label style="font-size:20px;">Total Employees<label>
@@ -358,7 +249,14 @@
         document.addEventListener('DOMContentLoaded', function () {
             fetchemploymentoption();
             FetchUserTypeCountModel();
-            FetcTotalRenderedHoursList();
+            fetchusertypeselect();
+            let dateFrom = $("#datefrom").val();
+            let dateTo = $("#dateto").val();
+            let usertype = $("#emp_type2").val();
+            FetcTotalRenderedHoursList(dateFrom, dateTo, usertype);
+            let today = new Date().toISOString().split("T")[0];
+            document.getElementById("datefrom").setAttribute("max", today);
+            document.getElementById("dateto").setAttribute("max", today);
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 aspectRatio: 1.5,
             });
@@ -498,6 +396,27 @@
 
             return `${hours}:${minutes}`; // Returns "09:00" or "21:00"
         }
+        function loadDataTable(dateFrom, dateTo) {
+            if ($.fn.DataTable.isDataTable("#userhour-table")) {
+                $("#userhour-table").DataTable().destroy(); // Destroy existing DataTable
+            }
+            let usertype = $("#emp_type2").val();
+            FetcTotalRenderedHoursList(dateFrom, dateTo,usertype);
+        }
+        $("#datefrom, #dateto").on("change", function () {
+            let dateFrom = $("#datefrom").val();
+            let dateTo = $("#dateto").val();
+       
+            if (dateFrom && dateTo) {
+                loadDataTable(dateFrom, dateTo);
+            }
+        });
+        $('#emp_type2').on('change', function () {
+            let dateFrom = $("#datefrom").val();
+            let dateTo = $("#dateto").val();
+            let usertype = $("#emp_type2").val();
+            FetcTotalRenderedHoursList(dateFrom, dateTo, usertype);
+        });
     </script>
 }
 

@@ -16,12 +16,8 @@ function fetchemploymentoption() {
     });
 }
 
-function FetcTotalRenderedHoursList() {
-    const data = {
-        Usertype: '',
-        datefrom: 1,
-        dateto: 1,
-    };
+function FetcTotalRenderedHoursList(datefrom,dateto,usertype) {
+   
     //$.ajax({
     //    url: '/Dashboard/TotalRenderedHoursList',
     //    data: {
@@ -34,12 +30,19 @@ function FetcTotalRenderedHoursList() {
 
     //    }
     //});
-
+  
     var tableId = '#userhour-table';
     if ($.fn.DataTable.isDataTable(tableId)) {
         $(tableId).DataTable().clear().destroy();
     }
+    let data = {
+        Usertype: usertype,
+        datefrom: datefrom,
+        dateto: dateto,
+    };
+    console.log(data);
     var dtProperties = {
+       
         ajax: {
             url: '/Dashboard/TotalRenderedHoursList',
             type: "POST",

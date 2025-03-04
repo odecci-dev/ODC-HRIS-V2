@@ -18,22 +18,24 @@ public partial class TblOvertimeModel
     public string EmployeeNo { get; set; }
     public DateTime? Date { get; set; }
     [DataType(DataType.Time)]
-    public TimeSpan StartTime { get; set; }
+    public TimeSpan? StartTime { get; set; }
     [DataType(DataType.Time)]
-    public TimeSpan EndTime { get; set; }
+    public TimeSpan? EndTime { get; set; }
     [DataType(DataType.Date)]
-    public DateTime StartDate { get; set; }
+    public DateTime? StartDate { get; set; }
     [DataType(DataType.Date)]
-    public DateTime EndDate { get; set; }
-    public decimal HoursFiled { get; set; }
-    public decimal HoursApproved { get; set; }
+    public DateTime? EndDate { get; set; }
+    public decimal? HoursFiled { get; set; }
+    public decimal? HoursApproved { get; set; }
     [Column(TypeName = "varchar(255)")]
     [MaxLength(255)]
-    public string Remarks { get; set; }
+    public string? Remarks { get; set; }
     public bool? ConvertToLeave { get; set; }
-    public DateTime DateCreated { get; set; }
-    public int CreatedBy { get; set; }
-    public bool isDeleted { get; set; }
-    public int DeletedBy { get; set; }
-    public DateTime DateDeleted { get; set; }
+    public DateTime? DateCreated { get; set; }
+    public int? LeaveId { get; set; }
+    public int? Status { get; set; }
+    public int? CreatedBy { get; set; }
+    public bool? isDeleted { get; set; }
+    public int? DeletedBy { get; set; }
+    public DateTime? DateDeleted { get; set; }
 }

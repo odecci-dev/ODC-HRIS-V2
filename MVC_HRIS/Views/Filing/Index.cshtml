@@ -10,39 +10,65 @@
 @using Microsoft.AspNetCore.Http;
 @inject IHttpContextAccessor Accessor;
 <style>
-    /* Style for tab container */
-    .tab {
-        overflow: hidden;
-        border-bottom: 2px solid #ccc;
-    }
-
-        /* Tab buttons */
-        .tab button {
-            background-color: inherit;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 10px 20px;
-            transition: 0.3s;
-            font-size: 16px;
+   .tab {
+        display: flex;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 5px;
+        gap: 10px;
+        justify-content: flex-start;
         }
 
-            /* Active tab button */
-            .tab button.active {
-                border-bottom: 3px solid #007BFF;
-                color: #007BFF;
-            }
+        /* Tab buttons */
+        .tablinks {
+            background: #f8f9fa;
+            border: none;
+            padding: 12px 18px;
+            font-size: 16px;
+            border-radius: 8px 8px 0 0;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            outline: none;
+            font-weight: 500;
+            border-top-left-radius: 30px;
+            color: #333;
+        }
 
-    /* Tab content */
-    .tab-content {
-        display: none;
-        padding: 15px;
-        border: 1px solid #ddd;
-    }
+        /* Hover effect */
+        .tablinks:hover {
 
-        /* Show active content */
+            background: var(--dark);
+            color: white;
+        }
+
+        /* Active tab */
+        .tablinks.active {
+            border-top-left-radius: 30px;
+            background: var(--dark);
+            color: white;
+            font-weight: bold;
+            box-shadow: 0px -3px 8px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Tab content */
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+            background: #fff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        /* Active tab content */
         .tab-content.active {
             display: block;
+        }
+
+        /* Fade-in effect */
+        @@keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 </style>
 
@@ -65,8 +91,6 @@
                 <button class="tablinks" onclick="openTab(event, 'Tab6')">Leave Ledger Maintenance</button>
             </div>
             <div id="Tab1" class="tab-content active">
-                <h3>Tab 1 Content</h3>
-
                 @await Html.PartialAsync("~/Views/OverTime/_OverTime.cshtml")
             </div>
 

@@ -1,5 +1,5 @@
 function payrollModalClose() {
-    
+
     modal = document.getElementById('payroll-modal');
     modal.style.display = "none";
 }
@@ -21,7 +21,7 @@ function payrollDOM() {
         document.getElementById('payrolldescription').value = $(this).data('description');
         document.getElementById('payrollcreatedby').value = $(this).data('createdby');
 
-        
+
         modal = document.getElementById('payroll-modal');
         modal.style.display = "flex";
     });
@@ -81,7 +81,7 @@ function delete_item_payroll() {
     //alert("Payroll Deleted");
 
     var payrollid = localStorage.getItem('payrollid');
-   
+
     var data = {};
     data.id = payrollid;
     data.deleteFlag = 1;

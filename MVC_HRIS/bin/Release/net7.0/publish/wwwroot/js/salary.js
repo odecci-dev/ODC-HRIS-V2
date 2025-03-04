@@ -1,5 +1,5 @@
 function salaryModalClose() {
-    
+
     modal = document.getElementById('salary-modal');
     modal.style.display = "none";
 }
@@ -23,7 +23,7 @@ function salaryDOM() {
         document.getElementById('salaryrate').value = $(this).data('rate');;
         document.getElementById('salarycreatedby').value = $(this).data('createdby');
 
-        
+
         modal = document.getElementById('salary-modal');
         modal.style.display = "flex";
     });
@@ -77,7 +77,7 @@ function delete_item_salary() {
     //alert("Payroll Deleted");
 
     var salaryid = localStorage.getItem('salaryid');
-   
+
     var data = {};
     data.id = salaryid;
     data.deleteFlag = 1;

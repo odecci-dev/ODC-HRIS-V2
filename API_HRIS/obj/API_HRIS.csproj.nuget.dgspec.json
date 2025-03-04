@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\ODC-HRIS\\API_HRIS\\API_HRIS.csproj": {}
+    "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\02-28-2025\\ODC-HRIS-V2\\API_HRIS\\API_HRIS.csproj": {}
   },
   "projects": {
-    "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\ODC-HRIS\\API_HRIS\\API_HRIS.csproj": {
+    "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\02-28-2025\\ODC-HRIS-V2\\API_HRIS\\API_HRIS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\ODC-HRIS\\API_HRIS\\API_HRIS.csproj",
+        "projectUniqueName": "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\02-28-2025\\ODC-HRIS-V2\\API_HRIS\\API_HRIS.csproj",
         "projectName": "API_HRIS",
-        "projectPath": "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\ODC-HRIS\\API_HRIS\\API_HRIS.csproj",
+        "projectPath": "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\02-28-2025\\ODC-HRIS-V2\\API_HRIS\\API_HRIS.csproj",
         "packagesPath": "C:\\Users\\Lerjun\\.nuget\\packages\\",
-        "outputPath": "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\ODC-HRIS\\API_HRIS\\obj\\",
+        "outputPath": "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\02-28-2025\\ODC-HRIS-V2\\API_HRIS\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

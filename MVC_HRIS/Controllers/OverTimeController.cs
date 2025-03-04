@@ -46,13 +46,44 @@ namespace MVC_HRIS.Controllers
             apiUrl = _configuration.GetValue<string>("AppSettings:WebApiURL");
             _appSettings = appSettings.Value;
         }
+        public class EmployeeIdFilter
+        {
+            public string EmployeeNo { get; set; }
+        }
+        [HttpPost]
+        public async Task<IActionResult> GetOverTimeList(EmployeeIdFilter data)
+        {
+            string result = "";
+            var list = new List<TblOvertimeVM>();
+            try
+            {
+                HttpClient client = new HttpClient();
+                var url = DBConn.HttpString + "/Overtime/OvertTimeList";
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token_.GetValue());
+                StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+                using (var response = await client.PostAsync(url, content))
+                {
+                    string res = await response.Content.ReadAsStringAsync();
+                    list = JsonConvert.DeserializeObject<List<TblOvertimeVM>>(res);
 
+                }
+            }
+            catch (Exception ex)
+            {
+                string status = ex.GetBaseException().ToString();
+            }
+
+            return Json(new { draw = 1, data = list, recordFiltered = list?.Count, recordsTotal = list?.Count });
+        }
         public IActionResult OverTime()
         {
-            
             return View("_OverTime");
         }
-       
+        public IActionResult OTFiling()
+        {
+
+            return PartialView("OTFiling");
+        }
 
 
     }

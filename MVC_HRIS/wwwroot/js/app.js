@@ -271,9 +271,12 @@ function fetchusertypeselect() {
         success: function (data) {
             //console.log(data)
             $("#emptype").empty();
+            $("#emp_type2").empty();
             $("#emptype").append('<option value="" disabled selected>Select Employee Type</option>');
+            $("#emp_type2").append('<option value="" disabled selected>Select Employee Type</option>');
             for (var i = 0; i < data.length; i++) {
                 $("#emptype").append('<option value="' + data[i].id + '">' + data[i].userType + "</option>");
+                $("#emp_type2").append('<option value="' + data[i].id + '">' + data[i].userType + "</option>");
             }
 
         }

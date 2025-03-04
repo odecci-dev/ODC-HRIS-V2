@@ -13,13 +13,13 @@ function getRegionsData() {
             //console.log(headers);
             $("#region").empty();
             $("#region").append('<option value="0" disabled selected>Select Region</option>');
-            for (var i = 0; i < array.length-1; i++) {
+            for (var i = 0; i < array.length - 1; i++) {
                 let headers = array[i].replaceAll('"', '').split(",");
 
-                $("#region").append('<option value="' + headers[2] + '" data-id="' + headers[3]+ '">' + headers[2] + "</option>");
+                $("#region").append('<option value="' + headers[2] + '" data-id="' + headers[3] + '">' + headers[2] + "</option>");
             }
         }
-     });
+    });
 }
 function getProvinceData() {
     var region = $("#region option:selected").data('id').toString().trim();
@@ -32,7 +32,7 @@ function getProvinceData() {
             const array = data.toString().split("\n");
             $("#province").empty();
             $("#province").append('<option value="0" disabled selected>Select Province</option>');
-            for (var i = 0; i < array.length-1; i++) {
+            for (var i = 0; i < array.length - 1; i++) {
                 let headers = array[i].replaceAll('"', '').split(",");
                 var lookupProvince = parseInt(headers[3], 10);
                 //console.log(headers[3]);
@@ -50,10 +50,10 @@ function getProvinceData() {
         }
     });
 }
- function getCityData() {
-     var province = $("#province option:selected").data('id').toString().trim();
-     province = parseInt(province, 10);
-     //console.log("province");
+function getCityData() {
+    var province = $("#province option:selected").data('id').toString().trim();
+    province = parseInt(province, 10);
+    //console.log("province");
     $.ajax({
         type: "GET",
         url: "../../../excel/barangay_files/refcitymun.csv",
@@ -65,14 +65,14 @@ function getProvinceData() {
             //console.log(array.length);
             $("#municipality").empty();
             $("#municipality").append('<option value="0" disabled selected>Select City</option>');
-            for (var i = 0; i < array.length-1; i++) {
+            for (var i = 0; i < array.length - 1; i++) {
                 let headers = array[i].replaceAll('"', '').split(",");
                 var lookUpCity = parseInt(headers[4], 10);
                 //console.log(headers[2]);
                 if (lookUpCity == province) {
                     $("#municipality").append('<option value="' + headers[2] + '"  data-id="' + headers[5] + '">' + headers[2] + "</option>");
                 }
-                
+
             }
 
         }
@@ -82,7 +82,7 @@ function getBarangayData() {
     var city = $("#municipality option:selected").data('id').toString().trim();
 
     city = parseInt(city, 10);
-     //console.log("city");
+    //console.log("city");
     $.ajax({
         type: "GET",
         url: "../../../excel/barangay_files/refbrgy.csv",
@@ -100,13 +100,13 @@ function getBarangayData() {
                 if (headers[5] == city) {
                     $("#barangay").append('<option value="' + headers[2] + '">' + headers[2].toUpperCase() + "</option>");
                 }
-                
+
             }
 
         }
     });
 }
- function addressDOM() {
+function addressDOM() {
     var region = document.getElementById('region');
     var province = document.getElementById('province');
     var municipality = document.getElementById('municipality');
@@ -116,10 +116,10 @@ function getBarangayData() {
     municipality.disabled = 'true';
     barangay.disabled = 'true';
     $("#region").change(function () {
-         var regionValue = $("#region option:selected").data('id');
-         //console.log(regionValue);
+        var regionValue = $("#region option:selected").data('id');
+        //console.log(regionValue);
 
-         localStorage.setItem('region', regionValue);
+        localStorage.setItem('region', regionValue);
 
         getProvinceData();
         $("#province").removeAttr('disabled');
@@ -176,7 +176,7 @@ function GetAllDataAddress() {
                 let headers = array[i].split(",")
                 //console.log(region);
                 $("#province").append('<option value="' + headers[2].replaceAll('"', '') + '"  data-id="' + headers[4].replaceAll('"', '') + '">' + headers[2].replaceAll('"', '') + "</option>");
-              
+
             }
 
         }
@@ -196,7 +196,7 @@ function GetAllDataAddress() {
                 let headers = array[i].split(",")
                 //console.log(headers[2]);
                 $("#municipality").append('<option value="' + headers[2].replaceAll('"', '') + '"  data-id="' + headers[5].replaceAll('"', '') + '">' + headers[2].replaceAll('"', '') + "</option>");
-                
+
 
             }
 
@@ -217,7 +217,7 @@ function GetAllDataAddress() {
                 let headers = array[i].split(",")
                 //console.log(headers[2]);
                 $("#barangay").append('<option value="' + headers[2].replaceAll('"', '') + '">' + headers[2].replaceAll('"', '').toUpperCase() + "</option>");
-                
+
 
             }
 

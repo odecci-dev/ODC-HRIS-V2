@@ -7,9 +7,5 @@ namespace API_HRIS.Models
     public class IdFilter
     {
         public int Id { get; set; }
-
-      
-
-
     }
 }

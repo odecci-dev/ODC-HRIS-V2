@@ -417,6 +417,46 @@ namespace API_HRIS.Migrations
                     b.ToTable("tbl_audittrail", (string)null);
                 });
 
+            modelBuilder.Entity("API_HRIS.Models.TblCalendarModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<TimeSpan>("BreakEndTime")
+                        .HasColumnType("time");
+
+                    b.Property<TimeSpan>("BreakStartTime")
+                        .HasColumnType("time");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EmploymentTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ScheduleDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<TimeSpan>("ShiftEndTime")
+                        .HasColumnType("time");
+
+                    b.Property<TimeSpan>("ShiftStartTime")
+                        .HasColumnType("time");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("isFixed")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TblCalendarModel", (string)null);
+                });
+
             modelBuilder.Entity("API_HRIS.Models.TblDeparmentModel", b =>
                 {
                     b.Property<int>("Id")
@@ -518,7 +558,7 @@ namespace API_HRIS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TblEmployeeTypes");
+                    b.ToTable("tbl_EmployeeType", (string)null);
                 });
 
             modelBuilder.Entity("API_HRIS.Models.TblEmploymentStatusModel", b =>
@@ -553,6 +593,100 @@ namespace API_HRIS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tbl_EmploymentStatusModel", (string)null);
+                });
+
+            modelBuilder.Entity("API_HRIS.Models.TblLeaveLedgerModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Consumed")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DeletedBy")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Earned")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("ExpirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LeaveCode")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("LeaveId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Remarks")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Source")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TblLeaveLedgerModel");
+                });
+
+            modelBuilder.Entity("API_HRIS.Models.TblLeaveTypeModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DeletedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Remarks")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<bool>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TblLeaveTypeModel");
                 });
 
             modelBuilder.Entity("API_HRIS.Models.TblModulesModel", b =>
@@ -616,6 +750,76 @@ namespace API_HRIS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tbl_TimeLogNotification", (string)null);
+                });
+
+            modelBuilder.Entity("API_HRIS.Models.TblOvertimeModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool?>("ConvertToLeave")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateDeleted")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DeletedBy")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmployeeNo")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<TimeSpan?>("EndTime")
+                        .HasColumnType("time");
+
+                    b.Property<decimal?>("HoursApproved")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("HoursFiled")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int?>("LeaveId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("OTNo")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Remarks")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<TimeSpan?>("StartTime")
+                        .HasColumnType("time");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("isDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TblOvertimeModel");
                 });
 
             modelBuilder.Entity("API_HRIS.Models.TblPayrollType", b =>
@@ -933,46 +1137,6 @@ namespace API_HRIS.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TblTimeLogStatus");
-                });
-
-            modelBuilder.Entity("API_HRIS.Models.TblTimeSchedule", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<TimeSpan>("BreakEndTime")
-                        .HasColumnType("time");
-
-                    b.Property<TimeSpan>("BreakStartTime")
-                        .HasColumnType("time");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("EmploymentTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ScheduleDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<TimeSpan>("ShiftEndTime")
-                        .HasColumnType("time");
-
-                    b.Property<TimeSpan>("ShiftStartTime")
-                        .HasColumnType("time");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("isFixed")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TimeSchedules");
                 });
 
             modelBuilder.Entity("API_HRIS.Models.TblUsersModel", b =>

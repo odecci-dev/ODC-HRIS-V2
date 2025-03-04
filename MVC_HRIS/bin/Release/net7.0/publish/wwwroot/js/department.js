@@ -1,5 +1,5 @@
 function departmentModalClose() {
-    
+
     modal = document.getElementById('department-modal');
     modal.style.display = "none";
 }

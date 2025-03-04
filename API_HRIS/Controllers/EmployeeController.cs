@@ -31,6 +31,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Net;
 using System.Web.Http.Services;
+using System.Linq;
 
 namespace API_HRIS.Controllers
 {
@@ -826,15 +827,14 @@ namespace API_HRIS.Controllers
 
             try
             {
-                DateTime startDate = new DateTime(2024, 02, 28, 00, 00, 00); // ✅ Fixed Invalid Date
-                DateTime endDate = new DateTime(2025, 02, 26, 00, 00, 00);   // ✅ End Date
+                string startDate = Convert.ToDateTime(data.datefrom).ToString("yyyy-MM-dd");// ✅ Fixed Invalid Date
+                string endDate = Convert.ToDateTime(data.dateto).ToString("yyyy-MM-dd");   // ✅ End Date
                 int userTypeFilter = 3; // Example UserType to filter
-
+                var excludedTaskIds = new List<int> { 10, 11, 12 };
                 List<UserHoursReport> result = _context.TblTimeLogs
-                    .Where(t => t.DateCreated.HasValue
-                        && t.Date.Value >= startDate
-                        && t.Date.Value <= endDate) // ✅ Filter by Date Range
-                    .Join(_context.TblUsersModels.Where(u => u.UserType == userTypeFilter), // ✅ Filter by UserType
+                    .Where(t => t.Date.Value >= Convert.ToDateTime(startDate)
+                        && t.Date.Value <= Convert.ToDateTime(endDate) && !excludedTaskIds.Contains(t.TaskId.Value)) // ✅ Filter by Date Range
+                    .Join(_context.TblUsersModels.Where(u => u.UserType == data.Usertype), // ✅ Filter by UserType
                           t => t.UserId,
                           u => u.Id,
                           (t, u) => new { t, u })

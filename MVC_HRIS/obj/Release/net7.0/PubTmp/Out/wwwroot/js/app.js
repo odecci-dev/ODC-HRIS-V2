@@ -5,7 +5,7 @@ let toggle = document.querySelector("#toggleButton");
 document.getElementById('toggle-sidebar').addEventListener('click', () => {
     let isActive = localStorage.getItem('sidebar-active') === 'true';
     localStorage.setItem('sidebar-active', !isActive);
- 
+
     updateSidebar();
 });
 function updateSidebar() {
@@ -27,7 +27,7 @@ function updateSidebar() {
         dashboaradsidebar.classList.remove('active');
         dashboaradsidebar.classList.remove('active');
         //empdashboard.classList.remove('active');
-}
+    }
 }
 function showloadingoverlay() {
     const loadingOverlay = document.getElementById('loadingOverlay');
@@ -35,7 +35,7 @@ function showloadingoverlay() {
 }
 
 function showsubnav() {
-   
+
     localStorage.setItem('subnav', 0);
     localStorage.setItem('topbarsubnav', 0);
     $('#maintenance').on('click', function () {
@@ -43,9 +43,6 @@ function showsubnav() {
         var subnav = document.getElementById('subnav');
         const arrow = document.getElementById('maintenanceArrow');
 
-       
-
-        
         if (isSubNav == 0) {
             localStorage.setItem('subnav', 1);
 
@@ -66,33 +63,32 @@ function showsubnav() {
             arrow.classList.add('fa-chevron-down');
         }
     });
+    $('#topbarmaintenance').on('click', function () {
+        var topbarisSubNav = localStorage.getItem('topbarsubnav');
+        var topbarsubnav = document.getElementById('topbarsubnav');
+        const topbararrow = document.getElementById('topbarmaintenanceArrow');
+
+        if (topbarisSubNav == 0) {
+            localStorage.setItem('topbarsubnav', 1);
+
+            topbarsubnav.style.display = 'block';
+            // Remove a class
+            topbararrow.classList.remove('fa-chevron-down');
+            // Add a class
+            topbararrow.classList.add('fa-chevron-up');
+        }
+        else {
+            localStorage.setItem('topbarsubnav', 0);
+
+            topbarsubnav.style.display = 'none';
+
+            // Remove a class
+            topbararrow.classList.remove('fa-chevron-up');
+            // Add a class
+            topbararrow.classList.add('fa-chevron-down');
+        }
+    });
 }
-$('#topbarmaintenance').on('click', function () {
-    var topbarisSubNav = localStorage.getItem('topbarsubnav');
-    var topbarsubnav = document.getElementById('topbarsubnav');
-    const topbararrow = document.getElementById('topbarmaintenanceArrow');
-
-    if (topbarisSubNav == 0) {
-        localStorage.setItem('topbarsubnav', 1);
-
-        topbarsubnav.style.display = 'block';
-        // Remove a class
-        topbararrow.classList.remove('fa-chevron-down');
-        // Add a class
-        topbararrow.classList.add('fa-chevron-up');
-    }
-    else {
-        localStorage.setItem('topbarsubnav', 0);
-
-        topbarsubnav.style.display = 'none';
-
-        // Remove a class
-        topbararrow.classList.remove('fa-chevron-up');
-        // Add a class
-        topbararrow.classList.add('fa-chevron-down');
-    }
-});
-
 function hideloadingoverlay() {
     loadingOverlay.style.display = 'none';
 }
@@ -114,7 +110,7 @@ function notifyMsg(title, msg, color, icon) {
 
 async function fetchpositionselect() {
 
- 
+
     $.ajax({
         url: '/Position/GetPositionSelect',
         data: {
@@ -199,7 +195,7 @@ async function fetchpendingnotificationcount() {
     });
 }
 function fetchdepartmentselect() {
- 
+
     const data = { Position: '', page: 1 };
     $.ajax({
         url: '/Department/GetDepartmentList',
@@ -265,7 +261,7 @@ function fetchtimlogsuserselect() {
     });
 }
 function fetchusertypeselect() {
- 
+
     $.ajax({
         url: '/UserType/GetUserTypeList',
         data: {
@@ -275,16 +271,19 @@ function fetchusertypeselect() {
         success: function (data) {
             //console.log(data)
             $("#emptype").empty();
+            $("#emp_type2").empty();
             $("#emptype").append('<option value="" disabled selected>Select Employee Type</option>');
+            $("#emp_type2").append('<option value="" disabled selected>Select Employee Type</option>');
             for (var i = 0; i < data.length; i++) {
                 $("#emptype").append('<option value="' + data[i].id + '">' + data[i].userType + "</option>");
+                $("#emp_type2").append('<option value="' + data[i].id + '">' + data[i].userType + "</option>");
             }
 
         }
     });
 }
 function fetchpayrolltypeselect() {
-  
+
     $.ajax({
         url: '/Payroll/GetPayrollType',
         data: {},
@@ -309,7 +308,7 @@ function fetchsalarytypeselect() {
         datatype: "json"
     }).done(function (data) { // @* //  *@
         //console.log(data)
-        $('#rate').val(data[0].rate);
+        //$('#rate').val(data[0].rate);
         $("#salarytype").empty();
         $("#salarytype").append('<option value="" disabled selected>Select Salary Type</option>');
         for (var i = 0; i < data.length; i++) {
@@ -347,7 +346,7 @@ function fetchtaskselect() {
         $("#manualtask").empty();
         $("#manualtask").append('<option value="" disabled selected>Select Task</option>');
         for (var i = 0; i < data.length; i++) {
-            $("#task").append('<option value="' + data[i].id + '">' + data[i].title + "</option>"); 
+            $("#task").append('<option value="' + data[i].id + '">' + data[i].title + "</option>");
             $("#manualtask").append('<option value="' + data[i].id + '">' + data[i].title + "</option>");
         }
     });
@@ -469,7 +468,7 @@ function loadModal(url, modal, title, size, isToggled) {
         type: 'GET',
         url: url,
         success: function (res) {
-         
+
             $(modal + ' .modal-body').html(res);
             $(modal + ' .modal-title').html(title);
             $(modal + ' .overlay').addClass('d-none');
@@ -495,6 +494,36 @@ function deletemodal() {
     var content = document.querySelectorAll(".modal-content");
     var modal_span = document.querySelectorAll(".modal-header span");
     var delete_ = '<input type="submit" value="YES" id="btn-delete_item" class="btn-pay"  onclick="delete_item()"/>';
+    var cancelButton = '<input type="submit" value="NO" id="btn-cancel" class="btn-NO" data-dismiss="modal"/>';
+    $('.input-container-button').empty();
+    $('.img-header').empty();
+
+    content.forEach(content => {
+        content.style.setProperty("border-radius", "15px 15px 15px 15px", "important");
+        content.style.setProperty("border-bottom", "7px #d03a4b solid", "important");
+
+    });
+    modal_span.forEach(modal_span => {
+        modal_span.style.setProperty("text-align", "center", "important");
+        modal_span.style.setProperty("width", "100%", "important");
+    });
+    element.forEach(element => {
+        element.style.setProperty("color", "white", "important");
+        element.style.setProperty("background-color", "#d03a4b", "important");
+        element.style.setProperty("border-radius", "15px 15px 0 0", "important");
+        element.style.setProperty("text-align", "center", "important");
+    });
+    document.getElementById('message').textContent = 'Are you sure you want to delete this item?';
+    document.getElementById('validation').textContent = 'Confirmation';
+    $('.input-container-button').append(cancelButton);
+    $('.input-container-button').append(delete_);
+    $('.img-header').append('<img id="modalImage" src="/img/OPTION.webp" alt="Modal Image" />');
+}
+function deleteusermodal() {
+    var element = document.querySelectorAll(".modal-header");
+    var content = document.querySelectorAll(".modal-content");
+    var modal_span = document.querySelectorAll(".modal-header span");
+    var delete_ = '<input type="submit" value="YES" id="btn-delete_item" class="btn-pay"  onclick="delete_user_item()"/>';
     var cancelButton = '<input type="submit" value="NO" id="btn-cancel" class="btn-NO" data-dismiss="modal"/>';
     $('.input-container-button').empty();
     $('.img-header').empty();
@@ -760,6 +789,10 @@ function successmodal(Id) {
     $('.input-container-button').append(delete_);
     $('.img-header').append('<img id="modalImage" src="/img/SUCCESS.webp" alt="Modal Image" />');
 }
+document.addEventListener('DOMContentLoaded', function () {
+});
+
+
 function topBarDOM() {
     $('#open-nav').click(function () {
         document.getElementById('open-nav').style.display = "none";
@@ -773,7 +806,4 @@ function topBarDOM() {
         document.getElementById('top-bar-menu').style.display = "none";
     });
 }
-document.addEventListener('DOMContentLoaded', function () {
-});
-
 

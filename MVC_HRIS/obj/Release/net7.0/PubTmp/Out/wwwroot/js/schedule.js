@@ -191,190 +191,190 @@ function scheduleDOM() {
     });
 
     $('#schedule-table').on('click', '.tbl-edit', function () {
-       
 
-        document.getElementById('schedId').value  = $(this).data('id');
-        document.getElementById('schedtitle').value  = $(this).data('title');
-        document.getElementById('scheddescription').value  = $(this).data('description');
-        if($(this).data('mondays') == null){
+
+        document.getElementById('schedId').value = $(this).data('id');
+        document.getElementById('schedtitle').value = $(this).data('title');
+        document.getElementById('scheddescription').value = $(this).data('description');
+        if ($(this).data('mondays') == null) {
             mondays.removeAttribute('required');    // Remove the 'required' attribute
             mondaye.removeAttribute('required');    // Remove the 'required' attribute
             mondays.setAttribute('disabled', ''); // Adds the 'disabled' attribute
             mondaye.setAttribute('disabled', ''); // Adds the 'disabled' attribute
         }
-        else{
+        else {
             monday.checked = false;
             mondays.setAttribute('required', ''); // Adds the 'required' attribute
             mondaye.setAttribute('required', ''); // Adds the 'required' attributemondays.removeAttribute('required');   
             mondays.removeAttribute('disabled');    // Remove the 'required' attribute
             mondaye.removeAttribute('disabled');    // Remove the 'required' attribute
-            document.getElementById('mondays').value  = $(this).data('mondays');
-            document.getElementById('mondaye').value  = $(this).data('mondaye');
+            document.getElementById('mondays').value = $(this).data('mondays');
+            document.getElementById('mondaye').value = $(this).data('mondaye');
         }
-        if($(this).data('tuesdays') == null){
+        if ($(this).data('tuesdays') == null) {
             tuesday.checked = true;
             tuesdays.removeAttribute('required');    // Remove the 'required' attribute
             tuesdaye.removeAttribute('required');    // Remove the 'required' attribute
             tuesdays.setAttribute('disabled', ''); // Adds the 'disabled' attribute
             tuesdaye.setAttribute('disabled', ''); // Adds the 'disabled' attribute
         }
-        else{
+        else {
             tuesday.checked = false;
             tuesdays.setAttribute('required', ''); // Adds the 'required' attribute
             tuesdaye.setAttribute('required', ''); // Adds the 'required' attributemondays.removeAttribute('required');   
             tuesdays.removeAttribute('disabled');    // Remove the 'required' attribute
             tuesdaye.removeAttribute('disabled');    // Remove the 'required' attribute
-            document.getElementById('tuesdays').value  = $(this).data('tuesdays');
-            document.getElementById('tuesdaye').value  = $(this).data('tuesdaye');
+            document.getElementById('tuesdays').value = $(this).data('tuesdays');
+            document.getElementById('tuesdaye').value = $(this).data('tuesdaye');
         }
-        
-        if($(this).data('wednesdays') == null){
+
+        if ($(this).data('wednesdays') == null) {
             wednesday.checked = true;
             wednesdays.removeAttribute('required');    // Remove the 'required' attribute
             wednesdaye.removeAttribute('required');    // Remove the 'required' attribute
             wednesdays.setAttribute('disabled', ''); // Adds the 'disabled' attribute
             wednesdaye.setAttribute('disabled', ''); // Adds the 'disabled' attribute
         }
-        else{
+        else {
             wednesday.checked = false;
             wednesdays.setAttribute('required', ''); // Adds the 'required' attribute
             wednesdaye.setAttribute('required', ''); // Adds the 'required' attributemondays.removeAttribute('required');   
             wednesdays.removeAttribute('disabled');    // Remove the 'required' attribute
             wednesdaye.removeAttribute('disabled');    // Remove the 'required' attribute
-            document.getElementById('wednesdays').value  = $(this).data('wednesdays');
-            document.getElementById('wednesdaye').value  = $(this).data('wednesdaye');
+            document.getElementById('wednesdays').value = $(this).data('wednesdays');
+            document.getElementById('wednesdaye').value = $(this).data('wednesdaye');
         }
-        if($(this).data('thursdays') == null){
+        if ($(this).data('thursdays') == null) {
             thursday.checked = true;
             thursdays.removeAttribute('required');    // Remove the 'required' attribute
             thursdaye.removeAttribute('required');    // Remove the 'required' attribute
             thursdays.setAttribute('disabled', ''); // Adds the 'disabled' attribute
             thursdaye.setAttribute('disabled', ''); // Adds the 'disabled' attribute
         }
-        else{
+        else {
             thursday.checked = false;
             thursdays.setAttribute('required', ''); // Adds the 'required' attribute
             thursdaye.setAttribute('required', ''); // Adds the 'required' attributemondays.removeAttribute('required');   
             thursdays.removeAttribute('disabled');    // Remove the 'required' attribute
             thursdaye.removeAttribute('disabled');    // Remove the 'required' attribute
-            document.getElementById('thursdays').value  = $(this).data('thursdays');
-            document.getElementById('thursdaye').value  = $(this).data('thursdaye');
+            document.getElementById('thursdays').value = $(this).data('thursdays');
+            document.getElementById('thursdaye').value = $(this).data('thursdaye');
         }
-        if($(this).data('fridays') == null){
+        if ($(this).data('fridays') == null) {
             friday.checked = true;
             fridays.removeAttribute('required');    // Remove the 'required' attribute
             fridaye.removeAttribute('required');    // Remove the 'required' attribute
             fridays.setAttribute('disabled', ''); // Adds the 'disabled' attribute
             fridaye.setAttribute('disabled', ''); // Adds the 'disabled' attribute
         }
-        else{
+        else {
             friday.checked = false;
             fridays.setAttribute('required', ''); // Adds the 'required' attribute
             fridaye.setAttribute('required', ''); // Adds the 'required' attributemondays.removeAttribute('required');   
             fridays.removeAttribute('disabled');    // Remove the 'required' attribute
             fridaye.removeAttribute('disabled');    // Remove the 'required' attribute
-            document.getElementById('fridays').value  = $(this).data('fridays');
-            document.getElementById('fridaye').value  = $(this).data('fridaye');
+            document.getElementById('fridays').value = $(this).data('fridays');
+            document.getElementById('fridaye').value = $(this).data('fridaye');
         }
-        if($(this).data('saturdays') == null){
+        if ($(this).data('saturdays') == null) {
             saturday.checked = true;
             saturdays.removeAttribute('required');    // Remove the 'required' attribute
             saturdaye.removeAttribute('required');    // Remove the 'required' attribute
             saturdays.setAttribute('disabled', ''); // Adds the 'disabled' attribute
             saturdaye.setAttribute('disabled', ''); // Adds the 'disabled' attribute
         }
-        else{
+        else {
             saturday.checked = false;
             saturdays.setAttribute('required', ''); // Adds the 'required' attribute
             saturdaye.setAttribute('required', ''); // Adds the 'required' attributemondays.removeAttribute('required');   
             saturdays.removeAttribute('disabled');    // Remove the 'required' attribute
             saturdaye.removeAttribute('disabled');    // Remove the 'required' attribute
-            document.getElementById('saturdays').value  = $(this).data('saturdays');
-            document.getElementById('saturdaye').value  = $(this).data('saturdaye');
+            document.getElementById('saturdays').value = $(this).data('saturdays');
+            document.getElementById('saturdaye').value = $(this).data('saturdaye');
         }
-        if($(this).data('sundays') == null){
+        if ($(this).data('sundays') == null) {
             sunday.checked = true;
             sundays.removeAttribute('required');    // Remove the 'required' attribute
             sundaye.removeAttribute('required');    // Remove the 'required' attribute
             sundays.setAttribute('disabled', ''); // Adds the 'disabled' attribute
             sundaye.setAttribute('disabled', ''); // Adds the 'disabled' attribute
         }
-        else{
+        else {
             sunday.checked = false;
             sundays.setAttribute('required', ''); // Adds the 'required' attribute
             sundaye.setAttribute('required', ''); // Adds the 'required' attributemondays.removeAttribute('required');   
             sundays.removeAttribute('disabled');    // Remove the 'required' attribute
             sundaye.removeAttribute('disabled');    // Remove the 'required' attribute
-            document.getElementById('sundays').value  = $(this).data('sundays');
-            document.getElementById('sundaye').value  = $(this).data('sundaye');
+            document.getElementById('sundays').value = $(this).data('sundays');
+            document.getElementById('sundaye').value = $(this).data('sundaye');
         }
-        
+
         smodal = document.getElementById('schedmodal');
         smodal.style.display = "flex";
-        });
+    });
     $('#schedule-table').on('click', '.tbl-view', function () {
-        
+
         document.getElementById('add-schedule').style.display = "none";
-        document.getElementById('schedId').value  = $(this).data('id');
-        document.getElementById('schedtitle').value  = $(this).data('title');
-        document.getElementById('scheddescription').value  = $(this).data('description');
+        document.getElementById('schedId').value = $(this).data('id');
+        document.getElementById('schedtitle').value = $(this).data('title');
+        document.getElementById('scheddescription').value = $(this).data('description');
         document.getElementById('schedId').setAttribute('disabled', '');
         document.getElementById('schedtitle').setAttribute('disabled', '');
         document.getElementById('scheddescription').setAttribute('disabled', '');
         monday.checked = true;
         mondays.setAttribute('disabled', ''); // Adds the 'required' attribute
         mondaye.setAttribute('disabled', ''); // Adds the 'required' attributemondays.removeAttribute('required');   
-        document.getElementById('mondays').value  = $(this).data('mondays');
-        document.getElementById('mondaye').value  = $(this).data('mondaye');
+        document.getElementById('mondays').value = $(this).data('mondays');
+        document.getElementById('mondaye').value = $(this).data('mondaye');
 
         tuesday.checked = true;
         tuesdays.setAttribute('disabled', ''); // Adds the 'required' attribute
         tuesdaye.setAttribute('disabled', ''); // Adds the 'required' attributemondays.removeAttribute('required');   
-        document.getElementById('tuesdays').value  = $(this).data('tuesdays');
-        document.getElementById('tuesdaye').value  = $(this).data('tuesdaye');
+        document.getElementById('tuesdays').value = $(this).data('tuesdays');
+        document.getElementById('tuesdaye').value = $(this).data('tuesdaye');
 
         wednesday.checked = true;
         wednesdays.setAttribute('disabled', ''); // Adds the 'required' attribute
         wednesdaye.setAttribute('disabled', ''); // Adds the 'required' attributemondays.removeAttribute('required');   
-        document.getElementById('wednesdays').value  = $(this).data('wednesdays');
-        document.getElementById('wednesdaye').value  = $(this).data('wednesdaye');
+        document.getElementById('wednesdays').value = $(this).data('wednesdays');
+        document.getElementById('wednesdaye').value = $(this).data('wednesdaye');
 
         thursday.checked = true;
         thursdays.setAttribute('disabled', ''); // Adds the 'disabled' attribute
         thursdaye.setAttribute('disabled', ''); // Adds the 'disabled' attribute
-        document.getElementById('thursdays').value  = $(this).data('thursdays');
-        document.getElementById('thursdaye').value  = $(this).data('thursdaye');
-        
+        document.getElementById('thursdays').value = $(this).data('thursdays');
+        document.getElementById('thursdaye').value = $(this).data('thursdaye');
+
         friday.checked = true;
         fridays.setAttribute('disabled', ''); // Adds the 'disabled' attribute
         fridaye.setAttribute('disabled', ''); // Adds the 'disabled' attribute
         //fridays.getElementById('fridays').value  = $(this).data('fridays');
         //fridaye.getElementById('fridaye').value  = $(this).data('fridaye');
-        document.getElementById('fridays').value  = $(this).data('fridays');
-        document.getElementById('fridaye').value  = $(this).data('fridaye');
+        document.getElementById('fridays').value = $(this).data('fridays');
+        document.getElementById('fridaye').value = $(this).data('fridaye');
 
         saturday.checked = true;
         saturdays.setAttribute('disabled', ''); // Adds the 'disabled' attribute
         saturdaye.setAttribute('disabled', ''); // Adds the 'disabled' attribute
-        document.getElementById('saturdays').value  = $(this).data('saturdays');
-        document.getElementById('saturdaye').value  = $(this).data('saturdaye');
+        document.getElementById('saturdays').value = $(this).data('saturdays');
+        document.getElementById('saturdaye').value = $(this).data('saturdaye');
 
         sunday.checked = true;
         sundays.setAttribute('disabled', ''); // Adds the 'disabled' attribute
         sundaye.setAttribute('disabled', ''); // Adds the 'disabled' attribute
-        document.getElementById('sundays').value  = $(this).data('sundays');
-        document.getElementById('sundaye').value  = $(this).data('sundaye');
+        document.getElementById('sundays').value = $(this).data('sundays');
+        document.getElementById('sundaye').value = $(this).data('sundaye');
 
         smodal = document.getElementById('schedmodal');
         smodal.style.display = "flex";
-        });
+    });
 }
 
 function closeScheduleModal() {
     document.getElementById('add-schedule-form').reset();
-    document.getElementById('schedId').value  = "";
-    document.getElementById('schedtitle').value  = "";
-    document.getElementById('scheddescription').value  = "";
+    document.getElementById('schedId').value = "";
+    document.getElementById('schedtitle').value = "";
+    document.getElementById('scheddescription').value = "";
 
     monday.checked = false;
     mondays.setAttribute('required', ''); // Adds the 'required' attribute
@@ -382,8 +382,8 @@ function closeScheduleModal() {
     mondaye.removeAttribute('disabled');    // Remove the 'required'    
     mondays.removeAttribute('disabled');    // Remove the 'required' attribute
     mondaye.removeAttribute('disabled');    // Remove the 'required' attribute 
-    document.getElementById('mondays').value  = "";
-    document.getElementById('mondaye').value  = "";
+    document.getElementById('mondays').value = "";
+    document.getElementById('mondaye').value = "";
 
     tuesday.checked = false;
     tuesdays.setAttribute('required', ''); // Adds the 'required' attribute
@@ -391,8 +391,8 @@ function closeScheduleModal() {
     tuesdaye.removeAttribute('disabled');    // Remove the 'required'    
     tuesdays.removeAttribute('disabled');    // Remove the 'required' attribute
     tuesdaye.removeAttribute('disabled');    // Remove the 'required' attribute 
-    document.getElementById('tuesdays').value  = "";
-    document.getElementById('tuesdaye').value  = "";
+    document.getElementById('tuesdays').value = "";
+    document.getElementById('tuesdaye').value = "";
 
     wednesday.checked = false;
     wednesdays.setAttribute('required', ''); // Adds the 'required' attribute
@@ -400,8 +400,8 @@ function closeScheduleModal() {
     wednesdaye.removeAttribute('disabled');    // Remove the 'required'    
     wednesdays.removeAttribute('disabled');    // Remove the 'required' attribute
     wednesdaye.removeAttribute('disabled');    // Remove the 'required' attribute 
-    document.getElementById('wednesdays').value  = "";
-    document.getElementById('wednesdaye').value  = "";
+    document.getElementById('wednesdays').value = "";
+    document.getElementById('wednesdaye').value = "";
 
     thursday.checked = false;
     thursdays.setAttribute('required', ''); // Adds the 'required' attribute
@@ -409,8 +409,8 @@ function closeScheduleModal() {
     thursdaye.removeAttribute('disabled');    // Remove the 'required'    
     thursdays.removeAttribute('disabled');    // Remove the 'required' attribute
     thursdaye.removeAttribute('disabled');    // Remove the 'required' attribute 
-    document.getElementById('thursdays').value  = "";
-    document.getElementById('thursdaye').value  = "";
+    document.getElementById('thursdays').value = "";
+    document.getElementById('thursdaye').value = "";
 
     friday.checked = false;
     fridays.setAttribute('required', ''); // Adds the 'required' attribute
@@ -418,8 +418,8 @@ function closeScheduleModal() {
     fridaye.removeAttribute('disabled');    // Remove the 'required'    
     fridays.removeAttribute('disabled');    // Remove the 'required' attribute
     fridaye.removeAttribute('disabled');    // Remove the 'required' attribute 
-    document.getElementById('fridays').value  = "";
-    document.getElementById('fridaye').value  = "";
+    document.getElementById('fridays').value = "";
+    document.getElementById('fridaye').value = "";
 
     saturday.checked = false;
     saturdays.setAttribute('required', ''); // Adds the 'required' attribute
@@ -427,8 +427,8 @@ function closeScheduleModal() {
     saturdaye.removeAttribute('disabled');    // Remove the 'required'    
     saturdays.removeAttribute('disabled');    // Remove the 'required' attribute
     saturdaye.removeAttribute('disabled');    // Remove the 'required' attribute 
-    document.getElementById('saturdays').value  = "";
-    document.getElementById('saturdaye').value  = "";
+    document.getElementById('saturdays').value = "";
+    document.getElementById('saturdaye').value = "";
 
     sunday.checked = false;
     sundays.setAttribute('required', ''); // Adds the 'required' attribute
@@ -436,8 +436,8 @@ function closeScheduleModal() {
     sundaye.removeAttribute('disabled');    // Remove the 'required'    
     sundays.removeAttribute('disabled');    // Remove the 'required' attribute
     sundaye.removeAttribute('disabled');    // Remove the 'required' attribute 
-    document.getElementById('sundays').value  = "";
-    document.getElementById('sundaye').value  = "";
+    document.getElementById('sundays').value = "";
+    document.getElementById('sundaye').value = "";
     document.getElementById('add-schedule').style.display = "block";
 
     smodal = document.getElementById('schedmodal');
@@ -447,6 +447,7 @@ function openScheduleModal() {
     smodal = document.getElementById('schedmodal');
     smodal.style.display = "flex";
 }
+
 function deletemodalSchedule() {
     var element = document.querySelectorAll(".modal-header");
     var content = document.querySelectorAll(".modal-content");
