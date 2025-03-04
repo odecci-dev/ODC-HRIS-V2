@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\ODC-HRIS\\UnitTest\\UnitTest.csproj": {}
+    "C:\\Users\\franc\\Documents\\C# Project\\HRIS\\ODC-HRIS-V2\\UnitTest\\UnitTest.csproj": {}
   },
   "projects": {
-    "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\ODC-HRIS\\UnitTest\\UnitTest.csproj": {
+    "C:\\Users\\franc\\Documents\\C# Project\\HRIS\\ODC-HRIS-V2\\UnitTest\\UnitTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\ODC-HRIS\\UnitTest\\UnitTest.csproj",
+        "projectUniqueName": "C:\\Users\\franc\\Documents\\C# Project\\HRIS\\ODC-HRIS-V2\\UnitTest\\UnitTest.csproj",
         "projectName": "UnitTest",
-        "projectPath": "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\ODC-HRIS\\UnitTest\\UnitTest.csproj",
-        "packagesPath": "C:\\Users\\Lerjun\\.nuget\\packages\\",
-        "outputPath": "D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\ODC-HRIS\\UnitTest\\obj\\",
+        "projectPath": "C:\\Users\\franc\\Documents\\C# Project\\HRIS\\ODC-HRIS-V2\\UnitTest\\UnitTest.csproj",
+        "packagesPath": "C:\\Users\\franc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\franc\\Documents\\C# Project\\HRIS\\ODC-HRIS-V2\\UnitTest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Lerjun\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\franc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -84,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

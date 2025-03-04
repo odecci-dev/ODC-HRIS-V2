@@ -61,6 +61,23 @@ namespace API_HRIS.Controllers
             return Ok(result);
         }
         [HttpPost]
+        public async Task<IActionResult> TimeLogsPending(TimeLogsParam data)
+        {
+            var result = (dynamic)null;
+            if (data.UserId == "0")
+            {
+                result = dbmet.TimeLogsData().Where(a => a.StatusId == "0").OrderByDescending(a => a.Id).ToList();
+
+            }
+            else
+            {
+                result = dbmet.TimeLogsData().Where(a => a.StatusId == "0" && a.UserId == data.UserId).OrderByDescending(a => a.Id).ToList();
+            }
+
+
+            return Ok(result);
+        }
+        [HttpPost]
         public async Task<IActionResult> NotificationList(TblNotification data)
         {
             var result = (dynamic)null;
@@ -107,26 +124,34 @@ namespace API_HRIS.Controllers
         public async Task<IActionResult> TimeLogsListManager(TimeLogsParam data)
         {
             var result = (dynamic)null;
-            if (data.Department == "0" && data.UserId == "0")
+            if(data.datefrom == null)
             {
-                result = dbmet.TimeLogsData().Where(a => Convert.ToDateTime(a.Date) >= Convert.ToDateTime(data.datefrom) && Convert.ToDateTime(a.Date) <= Convert.ToDateTime(data.dateto)).OrderByDescending(a => a.Id).ToList();
-
+                result = dbmet.TimeLogsData().OrderByDescending(a => a.Id).ToList();
             }
-            else if (data.Department != "0" && data.UserId == "0")
+            else
             {
-                result = dbmet.TimeLogsData().Where(a => Convert.ToDateTime(a.Date) >= Convert.ToDateTime(data.datefrom) && a.Department == data.Department && Convert.ToDateTime(a.Date) <= Convert.ToDateTime(data.dateto)).OrderByDescending(a => a.Id).ToList();
+                if (data.Department == "0" && data.UserId == "0")
+                {
+                    result = dbmet.TimeLogsData().Where(a => Convert.ToDateTime(a.Date) >= Convert.ToDateTime(data.datefrom) && Convert.ToDateTime(a.Date) <= Convert.ToDateTime(data.dateto)).OrderByDescending(a => a.Id).ToList();
 
-            }
-            else if (data.Department == "0" && data.UserId != "0")
-            {
-                result = dbmet.TimeLogsData().Where(a => Convert.ToDateTime(a.Date) >= Convert.ToDateTime(data.datefrom) && a.UserId == data.UserId && Convert.ToDateTime(a.Date) <= Convert.ToDateTime(data.dateto)).OrderByDescending(a => a.Id).ToList();
+                }
+                else if (data.Department != "0" && data.UserId == "0")
+                {
+                    result = dbmet.TimeLogsData().Where(a => Convert.ToDateTime(a.Date) >= Convert.ToDateTime(data.datefrom) && a.Department == data.Department && Convert.ToDateTime(a.Date) <= Convert.ToDateTime(data.dateto)).OrderByDescending(a => a.Id).ToList();
 
-            }
-            else if (data.Department != "0" && data.UserId != "0")
-            {
-                result = dbmet.TimeLogsData().Where(a => Convert.ToDateTime(a.Date) >= Convert.ToDateTime(data.datefrom) && a.UserId == data.UserId && a.Department == data.Department && Convert.ToDateTime(a.Date) <= Convert.ToDateTime(data.dateto)).OrderByDescending(a => a.Id).ToList();
+                }
+                else if (data.Department == "0" && data.UserId != "0")
+                {
+                    result = dbmet.TimeLogsData().Where(a => Convert.ToDateTime(a.Date) >= Convert.ToDateTime(data.datefrom) && a.UserId == data.UserId && Convert.ToDateTime(a.Date) <= Convert.ToDateTime(data.dateto)).OrderByDescending(a => a.Id).ToList();
 
+                }
+                else if (data.Department != "0" && data.UserId != "0")
+                {
+                    result = dbmet.TimeLogsData().Where(a => Convert.ToDateTime(a.Date) >= Convert.ToDateTime(data.datefrom) && a.UserId == data.UserId && a.Department == data.Department && Convert.ToDateTime(a.Date) <= Convert.ToDateTime(data.dateto)).OrderByDescending(a => a.Id).ToList();
+
+                }
             }
+           
 
 
             return Ok(result);

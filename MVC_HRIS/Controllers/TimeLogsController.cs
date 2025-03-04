@@ -189,6 +189,32 @@ namespace MVC_HRIS.Controllers
             return Json(new { draw = 1, data = list, recordFiltered = list?.Count, recordsTotal = list?.Count });
         }
         [HttpPost]
+        public async Task<IActionResult> GetPedingTimelogsList(TimeLogsParam data)
+        {
+            string result = "";
+            var list = new List<TimelogsVM>();
+            try
+            {
+                HttpClient client = new HttpClient();
+                var url = DBConn.HttpString + "/TimeLogs/TimeLogsPending";
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token_.GetValue());
+                StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+                using (var response = await client.PostAsync(url, content))
+                {
+                    string res = await response.Content.ReadAsStringAsync();
+                    list = JsonConvert.DeserializeObject<List<TimelogsVM>>(res);
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                string status = ex.GetBaseException().ToString();
+            }
+
+            return Json(new { draw = 1, data = list, recordFiltered = list?.Count, recordsTotal = list?.Count });
+        }
+        [HttpPost]
         public async Task<IActionResult> GetTimelogsCount(TimeLogsParam data)
         {
             string result = "";
@@ -470,6 +496,31 @@ namespace MVC_HRIS.Controllers
             {
                 HttpClient client = new HttpClient();
                 var url = DBConn.HttpString + "/TimeLogs/TimeLogsListManager";
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token_.GetValue());
+                StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+                using (var response = await client.PostAsync(url, content))
+                {
+                    string res = await response.Content.ReadAsStringAsync();
+                    list = JsonConvert.DeserializeObject<List<TimelogsVM>>(res);
+
+                }
+            }
+
+            catch (Exception ex)
+            {
+                string status = ex.GetBaseException().ToString();
+            }
+            return Json(list);
+        }
+
+        public async Task<IActionResult> GetPendingTimelogsListSelect(TimeLogsParam data)
+        {
+            string result = "";
+            var list = new List<TimelogsVM>();
+            try
+            {
+                HttpClient client = new HttpClient();
+                var url = DBConn.HttpString + "/TimeLogs/TimeLogsPending";
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token_.GetValue());
                 StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
                 using (var response = await client.PostAsync(url, content))
