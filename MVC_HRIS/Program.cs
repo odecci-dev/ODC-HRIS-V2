@@ -3,6 +3,7 @@ using MVC_HRIS.Manager;
 using MVC_HRIS.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpClient();
 
 // Add services to the container.
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
