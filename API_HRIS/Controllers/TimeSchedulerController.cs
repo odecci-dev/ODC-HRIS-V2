@@ -32,7 +32,7 @@ namespace API_HRIS.Controllers
             _context = context;
         }
         [HttpPost]
-        public async Task<IActionResult> Create(TblTimeSchedule schedule)
+        public async Task<IActionResult> Create(TblCalendarModel schedule)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace API_HRIS.Controllers
 
         // Edit Schedule (POST)
         [HttpPost]
-        public async Task<IActionResult> Edit(TblTimeSchedule schedule)
+        public async Task<IActionResult> Edit(TblCalendarModel schedule)
         {
             try
             {
