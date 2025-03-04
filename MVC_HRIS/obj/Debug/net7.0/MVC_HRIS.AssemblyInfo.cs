@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MVC_HRIS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6525178252d114674a3846a0cd26570fc8bc0fb4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+87a3e3b0514be99d09d6c32b507ecc9140b70f48")]
 [assembly: System.Reflection.AssemblyProductAttribute("MVC_HRIS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MVC_HRIS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

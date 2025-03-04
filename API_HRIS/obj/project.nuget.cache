@@ -264,6 +264,12 @@
   ],
   "logs": [
     {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\DEVELOPMENT\\ODC_HRIS_V2_LERJUN\\02-28-2025\\ODC-HRIS-V2\\API_HRIS\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    },
+    {
       "code": "NU1903",
       "level": "Warning",
       "warningLevel": 1,

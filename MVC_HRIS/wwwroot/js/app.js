@@ -225,11 +225,11 @@ function fetchtimlogsuserselect() {
 
     var depart = $('#selectDap').val() ? $('#selectDap').val() : 0;
     const data = {
-        Usertype: '',
+        Usertype: 0,
         UserId: 0,
-        datefrom: $('#datefrom').val(),
-        dateto: $('#dateto').val(),
-        Department: depart
+        datefrom: null,
+        dateto: null,
+        Department: 0
     };
     //console.log(data);
     $.ajax({
@@ -240,7 +240,7 @@ function fetchtimlogsuserselect() {
         type: "POST",
         datatype: "json",
         success: function (data) {
-            //console.log(data);
+            console.log(data);
             $("#selectUser").empty();
             $("#selectUser").append('<option value="" disabled selected>Select User</option>');
             $("#selectUser").append('<option value="0" >Select All</option>');
@@ -254,7 +254,44 @@ function fetchtimlogsuserselect() {
 
                 // Append the user to the select element
                 if (user) {
-                    $("#selectUser").append('<option value="' + user.userId + '"><div style="display: block"><span>' + user.fname + " " + user.lname + " </span><p style='font-size: 8px !important; color: red'>(" + user.username + ")</p></div></option>");
+                    $("#selectUser").append('<option value="' + user.userId + '"><div style="display: block"><span>' + user.fname + " " + user.lname + " </span></div></option>");
+                }
+            });
+        }
+    });
+}
+
+function fetchtimlogsuserpendingselect() {
+
+
+    const data = {
+        UserId: 0
+    };
+    //console.log(data);
+
+    $.ajax({
+        url: '/TimeLogs/GetPendingTimelogsListSelect',
+        data: {
+            data: data,
+        },
+        type: "POST",
+        datatype: "json",
+        success: function (data) {
+            console.log(data);
+            $("#selectUserPending").empty();
+            $("#selectUserPending").append('<option value="" disabled selected>Select User</option>');
+            $("#selectUserPending").append('<option value="0" >Select All</option>');
+            // Use a Set to store distinct userIds
+            const distinctUserIds = [...new Set(data.map(item => item.userId))];
+
+            // Iterate over the distinct userIds
+            distinctUserIds.forEach(userId => {
+                // Find the user details corresponding to the current userId
+                const user = data.find(item => item.userId === userId);
+
+                // Append the user to the select element
+                if (user) {
+                    $("#selectUserPending").append('<option value="' + user.userId + '"><div style="display: block"><span>' + user.fname + " " + user.lname + " </span></div></option>");
                 }
             });
         }

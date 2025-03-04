@@ -62,6 +62,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGVhdmVcX0xlYXZlVHlwZU1haW50ZW5hbmNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/DEVELOPMENT/ODC_HRIS_V2_LERJUN/02-28-2025/ODC-HRIS-V2/MVC_HRIS/Views/Leave/_PendingLeaveRequest.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGVhdmVcX1BlbmRpbmdMZWF2ZVJlcXVlc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/DEVELOPMENT/ODC_HRIS_V2_LERJUN/02-28-2025/ODC-HRIS-V2/MVC_HRIS/Views/LogIn/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9nSW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -148,6 +152,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/DEVELOPMENT/ODC_HRIS_V2_LERJUN/02-28-2025/ODC-HRIS-V2/MVC_HRIS/Views/TimeLogs/TaskModal.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZUxvZ3NcVGFza01vZGFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/DEVELOPMENT/ODC_HRIS_V2_LERJUN/02-28-2025/ODC-HRIS-V2/MVC_HRIS/Views/TimeLogs/_PendingTimelogs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGltZUxvZ3NcX1BlbmRpbmdUaW1lbG9ncy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/DEVELOPMENT/ODC_HRIS_V2_LERJUN/02-28-2025/ODC-HRIS-V2/MVC_HRIS/Views/_ViewImports.cshtml]

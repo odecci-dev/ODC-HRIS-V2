@@ -1239,6 +1239,25 @@
   },
   {
     "ContainingType": "API_HRIS.Controllers.TimeLogsController",
+<<<<<<< HEAD
+=======
+    "Method": "TimeLogsPending",
+    "RelativePath": "TimeLogs/TimeLogsPending",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "API_HRIS.Controllers.TimeLogsController\u002BTimeLogsParam",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_HRIS.Controllers.TimeLogsController",
+>>>>>>> 4ab5ee1971f3638412b65737f6a2b865595de11d
     "Method": "TimeOut",
     "RelativePath": "TimeLogs/TimeOut",
     "HttpMethod": "POST",
