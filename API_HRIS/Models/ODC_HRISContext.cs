@@ -43,8 +43,11 @@ public partial class ODC_HRISContext : DbContext
     public virtual DbSet<TblModulesModel> TblModulesModel { get; set; }
     public virtual DbSet<TblScheduleModel> TblScheduleModels { get; set; }
     public virtual DbSet<TblEmploymentStatusModel> TblEmploymentStatusModels { get; set; }
-    public DbSet<TblTimeSchedule> TimeSchedules { get; set; }
+    public DbSet<TblCalendarModel> TimeSchedules { get; set; }
     public virtual DbSet<TblEmployeeTypeModel> TblEmployeeTypes { get; set; }
+    public virtual DbSet<TblOvertimeModel> TblOvertimeModel { get; set; }
+    public virtual DbSet<TblLeaveLedgerModel> TblLeaveLedgerModel { get; set; }
+    public virtual DbSet<TblLeaveTypeModel> TblLeaveTypeModel { get; set; }
     public List<GetAllUserDetailsResult> GetEmployees()
     {
         return AllUserDetails.FromSqlRaw("EXEC GetAllUserDetails").ToList();
@@ -56,9 +59,9 @@ public partial class ODC_HRISContext : DbContext
             entity.ToTable("tbl_EmployeeType");
 
         });
-        modelBuilder.Entity<TblTimeSchedule>(entity =>
+        modelBuilder.Entity<TblCalendarModel>(entity =>
         {
-            entity.ToTable("TblTimeSchedule");
+            entity.ToTable("TblCalendarModel");
 
         });
         modelBuilder.Entity<TblScheduleModel>(entity =>

@@ -627,7 +627,6 @@ namespace MVC_HRIS.Controllers
         }
         public IActionResult TaskModal()
         {
-           
                
                 return PartialView("TaskModal");
         }
