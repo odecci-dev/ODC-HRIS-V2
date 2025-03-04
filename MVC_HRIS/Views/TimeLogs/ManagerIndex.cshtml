@@ -259,6 +259,7 @@
         $(document).ready(function () {
             timeLogs();
             fetchtaskselect();
+            fetchtimlogsuserselect();
             const timbtn = document.querySelectorAll('.time-btn');
             const dateinput = document.querySelectorAll('.date-input');
             var type = "@Accessor.HttpContext.Session.GetString("UserTypeName")";
@@ -375,16 +376,17 @@
                         "data": "id",
                         "render": function (data, type, row) {
                             var images = row['filePath'] == null ? img : row['filePath'];
+                            //var images = img;
                             var fullname = row.fname + " " + row.lname;
                             var btn = `<div  style="display:flex; gap: 10px; align-items: center;">
-                                            <div class="data-img">
-                                                <img src='/img/${images}' width="100%" />
-                                            </div>
-                                            <div style="align-items: center;">
-                                                <h4 style="text-align: left; margin: 0">${fullname}</h4>
-                                                <p style="text-align: left; margin: 0">${row.employeeID}</p>
-                                            </div>
-                                        </div>`;
+                                                    <div class="data-img">
+                                                        <img src='${images}' width="100%" />
+                                                    </div>
+                                                    <div style="align-items: center;">
+                                                        <h6 style="text-align: left; margin: 0; font-size: 16px;">${fullname}</h6>
+                                                        <p style="text-align: left; margin: 0; font-size: 12px;">${row.employeeID}</p>
+                                                    </div>
+                                                </div>`;
                             return btn;
                         }
                     },
@@ -392,21 +394,30 @@
                     //     "title": "Employee ID #",
                     //     "data": "employeeID"
                     // },
+                    
                     {
-                        "title": "Username",
-                        "data": "username"
+                        "title": "Date",
+                        "data": "date",
+                        "render": function (data) {
+                            const parts = data.split(' ');
+                            const part = parts[0].split('/');
+                            //console.log(part);
+                            if (part.length === 3) {
+                                // Convert to `YYYY-MM-DD`
+                                const formattedDate = `${part[1]}-${part[0]}-${part[2]}`;
+                                return formattedDate;
+                            }
+                            return data;
+                        },
+                        type: "date" // Ensures proper sorting by date
                     },
                     {
                         "title": "Task",
-                        "data": "task",
-                        "render": function (data, type, row) {
-                            var details = `<div> ${data} </div>
-                                           <div class="taskDesc" id='taskDesc${row.id}'>
-                                                <h4> Task Description: </h4>
-                                                ${row.remarks} 
-                                            </div>`;
-                            return details;
-                        }
+                        "data": "task"
+                    },
+                    {
+                        "title": "Task Decription",
+                        "data": "remarks"
                     },
                     {
                         "title": "Time In",
@@ -434,197 +445,201 @@
                         }
                     },
                     {
-                        "title": "Total Rendered Hours",
+                        "title": "Rendered Hours",
                         "data": "renderedHours"
                     }, 
                     {
                         "title": "Status",
                         "data": "statusName"
-                    },
-                    {
-                        "title": "Action",
-                        "data": "id",
-                        "render": function (data, type, row) {
-                            var images = row['filePath'] == null ? img : row['filePath'];
-                            var status = row.statusId;
-                            var task = row.taskId;
-                            var button = "";
-                            if(row.statusId == '0'){
-                                button = `<div class="action">
-                                                    <button class="tbl-decline btn btn-danger" id="aprroved-timein" title="Delete"
-                                                            data-id="${data}"
-                                                            data-status="${row.statusId}"
-                                                            data-task="${row.taskId}"
-                                                            data-date="${row.date}"
-                                                            data-timein="${row.timeIn}"
-                                                            data-timeout="${row.timeOut}"
-                                                            data-remarks="${row.remarks}"
-                                                            data-userid="${row.userId}"
-                                                        >
-                                                        <i class="fa-solid fa-circle-xmark"></i> Decline
-                                                    </button>
-                                                    <button class="tbl-approve btn btn-success" id="add-timeout" title="Time Out"
-                                                            data-id="${data}"
-                                                            data-status="${row.statusId}"
-                                                            data-task="${row.taskId}"
-                                                            data-date="${row.date}"
-                                                            data-timein="${row.timeIn}"
-                                                            data-timeout="${row.timeOut}"
-                                                            data-remarks="${row.remarks}"
-                                                            data-userid="${row.userId}"
-                                                        >
-                                                        <i class="fa-solid fa-circle-check"></i> Approve
-                                                    </button>
-                                                    <button class="tbl-view btn btn-info" id="add-timeout" title="Time Out"
-                                                            data-id="${data}"
-                                                            data-status="${row.statusId}"
-                                                            data-task="${row.taskId}"
-                                                            data-date="${row.date}"
-                                                            data-timein="${row.timeIn}"
-                                                            data-timeout="${row.timeOut}"
-                                                            data-remarks="${row.remarks}"
-                                                            data-userid="${row.userId}"
-                                                        >
-                                                        <i class="fa-solid fa-circle-check"></i> View
-                                                    </button>
-                                                </div>`;
-                            }
-                            else if(row.statusId == '1'){
-                                button = `<div class="action">
-                                                    <button class="tbl-decline btn btn-danger" id="aprroved-timein" title="Delete"
-                                                            data-id="${data}"
-                                                            data-status="${row.statusId}"
-                                                            data-task="${row.taskId}"
-                                                            data-date="${row.date}"
-                                                            data-timein="${row.timeIn}"
-                                                            data-timeout="${row.timeOut}"
-                                                            data-remarks="${row.remarks}"
-                                                            data-userid="${row.userId}"
-                                                        >
-                                                        <i class="fa-solid fa-circle-xmark"></i> Decline
-                                                    </button>
-                                                     <button class="tbl-approve btn btn-success" id="add-timeout" title="Time Out"
-                                                            data-id="${data}"
-                                                            data-status="${row.statusId}"
-                                                            data-task="${row.taskId}"
-                                                            data-date="${row.date}"
-                                                            data-timein="${row.timeIn}"
-                                                            data-timeout="${row.timeOut}"
-                                                            data-remarks="${row.remarks}"
-                                                            data-userid="${row.userId}"
-                                                        disabled>
-                                                        <i class="fa-solid fa-circle-check"></i> Approve
-                                                    </button>
-                                                    <button class="tbl-view btn btn-info" id="add-timeout" title="Time Out"
-                                                            data-id="${data}"
-                                                            data-status="${row.statusId}"
-                                                            data-task="${row.taskId}"
-                                                            data-date="${row.date}"
-                                                            data-timein="${row.timeIn}"
-                                                            data-timeout="${row.timeOut}"
-                                                            data-remarks="${row.remarks}"
-                                                            data-userid="${row.userId}"
-                                                        >
-                                                        <i class="fa-solid fa-circle-check"></i> View
-                                                    </button>
-                                                </div>`;
-                            } 
-                            else if (row.statusId == '2') {
-                                button = `<div class="action">
-                                                            <button class="tbl-decline btn btn-danger" id="aprroved-timein" title="Delete"
-                                                                    data-id="${data}"
-                                                                    data-status="${row.statusId}"
-                                                                    data-task="${row.taskId}"
-                                                                    data-date="${row.date}"
-                                                                    data-timein="${row.timeIn}"
-                                                                    data-timeout="${row.timeOut}"
-                                                                    data-remarks="${row.remarks}"
-                                                                    data-userid="${row.userId}"
-                                                                    disabled>
-                                                                <i class="fa-solid fa-circle-xmark"></i> Decline
-                                                            </button>
-                                                             <button class="tbl-approve btn btn-success" id="add-timeout" title="Time Out"
-                                                                    data-id="${data}"
-                                                                    data-status="${row.statusId}"
-                                                                    data-task="${row.taskId}"
-                                                                    data-date="${row.date}"
-                                                                    data-timein="${row.timeIn}"
-                                                                    data-timeout="${row.timeOut}"
-                                                                    data-remarks="${row.remarks}"
-                                                                    data-userid="${row.userId}"
-                                                                >
-                                                                <i class="fa-solid fa-circle-check"></i> Approve
-                                                            </button>
-                                                            <button class="tbl-view btn btn-info" id="add-timeout" title="Time Out"
-                                                                    data-id="${data}"
-                                                                    data-status="${row.statusId}"
-                                                                    data-task="${row.taskId}"
-                                                                    data-date="${row.date}"
-                                                                    data-timein="${row.timeIn}"
-                                                                    data-timeout="${row.timeOut}"
-                                                                    data-remarks="${row.remarks}"
-                                                                    data-userid="${row.userId}"
-                                                                >
-                                                                <i class="fa-solid fa-circle-check"></i> View
-                                                            </button>
-                                                        </div>`;
-                            }
-                            else{
-                                 button = `<div class="action">
-                                                    <button class="tbl-decline btn btn-danger" id="aprroved-timein" title="Delete"
-                                                            data-id="${data}"
-                                                            data-status="${row.statusId}"
-                                                            data-task="${row.taskId}"
-                                                            data-date="${row.date}"
-                                                            data-timein="${row.timeIn}"
-                                                            data-timeout="${row.timeOut}"
-                                                            data-remarks="${row.remarks}"
-                                                            data-userid="${row.userId}"
-                                                        disabled>
-                                                        <i class="fa-solid fa-circle-xmark"></i> Decline
-                                                    </button >
-                                                    <button class="tbl-approve btn btn-success" id="add-timeout" title="Time Out"
-                                                            data-id="${data}"
-                                                            data-status="${row.statusId}"
-                                                            data-task="${row.taskId}"
-                                                            data-date="${row.date}"
-                                                            data-timein="${row.timeIn}"
-                                                            data-timeout="${row.timeOut}"
-                                                            data-remarks="${row.remarks}"
-                                                            data-userid="${row.userId}"
-                                                        disabled>
-                                                        <i class="fa-solid fa-circle-check"></i> Approve
-                                                    </button>
-                                                    <button class="tbl-view btn btn-info" id="add-timeout" title="Time Out"
-                                                            data-id="${data}"
-                                                            data-status="${row.statusId}"
-                                                            data-task="${row.taskId}"
-                                                            data-date="${row.date}"
-                                                            data-timein="${row.timeIn}"
-                                                            data-timeout="${row.timeOut}"
-                                                            data-remarks="${row.remarks}"
-                                                            data-userid="${row.userId}"
-                                                        disabled>
-                                                        <i class="fa-solid fa-circle-check"></i> View
-                                                    </button>
-                                                </div>`;
-                            }
-                            
-                            return button;
-                        }
                     }
+                    // ,
+                    // {
+                    //     "title": "Action",
+                    //     "data": "id",
+                    //     "render": function (data, type, row) {
+                    //         var images = row['filePath'] == null ? img : row['filePath'];
+                    //         var status = row.statusId;
+                    //         var task = row.taskId;
+                    //         var button = "";
+                    //         if(row.statusId == '0'){
+                    //             button = `<div class="action">
+                    //                                 <button class="tbl-decline btn btn-danger" id="aprroved-timein" title="Delete"
+                    //                                         data-id="${data}"
+                    //                                         data-status="${row.statusId}"
+                    //                                         data-task="${row.taskId}"
+                    //                                         data-date="${row.date}"
+                    //                                         data-timein="${row.timeIn}"
+                    //                                         data-timeout="${row.timeOut}"
+                    //                                         data-remarks="${row.remarks}"
+                    //                                         data-userid="${row.userId}"
+                    //                                     >
+                    //                                     <i class="fa-solid fa-circle-xmark"></i> Decline
+                    //                                 </button>
+                    //                                 <button class="tbl-approve btn btn-success" id="add-timeout" title="Time Out"
+                    //                                         data-id="${data}"
+                    //                                         data-status="${row.statusId}"
+                    //                                         data-task="${row.taskId}"
+                    //                                         data-date="${row.date}"
+                    //                                         data-timein="${row.timeIn}"
+                    //                                         data-timeout="${row.timeOut}"
+                    //                                         data-remarks="${row.remarks}"
+                    //                                         data-userid="${row.userId}"
+                    //                                     >
+                    //                                     <i class="fa-solid fa-circle-check"></i> Approve
+                    //                                 </button>
+                    //                                 <button class="tbl-view btn btn-info" id="add-timeout" title="Time Out"
+                    //                                         data-id="${data}"
+                    //                                         data-status="${row.statusId}"
+                    //                                         data-task="${row.taskId}"
+                    //                                         data-date="${row.date}"
+                    //                                         data-timein="${row.timeIn}"
+                    //                                         data-timeout="${row.timeOut}"
+                    //                                         data-remarks="${row.remarks}"
+                    //                                         data-userid="${row.userId}"
+                    //                                     >
+                    //                                     <i class="fa-solid fa-circle-check"></i> View
+                    //                                 </button>
+                    //                             </div>`;
+                    //         }
+                    //         else if(row.statusId == '1'){
+                    //             button = `<div class="action">
+                    //                                 <button class="tbl-decline btn btn-danger" id="aprroved-timein" title="Delete"
+                    //                                         data-id="${data}"
+                    //                                         data-status="${row.statusId}"
+                    //                                         data-task="${row.taskId}"
+                    //                                         data-date="${row.date}"
+                    //                                         data-timein="${row.timeIn}"
+                    //                                         data-timeout="${row.timeOut}"
+                    //                                         data-remarks="${row.remarks}"
+                    //                                         data-userid="${row.userId}"
+                    //                                     >
+                    //                                     <i class="fa-solid fa-circle-xmark"></i> Decline
+                    //                                 </button>
+                    //                                  <button class="tbl-approve btn btn-success" id="add-timeout" title="Time Out"
+                    //                                         data-id="${data}"
+                    //                                         data-status="${row.statusId}"
+                    //                                         data-task="${row.taskId}"
+                    //                                         data-date="${row.date}"
+                    //                                         data-timein="${row.timeIn}"
+                    //                                         data-timeout="${row.timeOut}"
+                    //                                         data-remarks="${row.remarks}"
+                    //                                         data-userid="${row.userId}"
+                    //                                     disabled>
+                    //                                     <i class="fa-solid fa-circle-check"></i> Approve
+                    //                                 </button>
+                    //                                 <button class="tbl-view btn btn-info" id="add-timeout" title="Time Out"
+                    //                                         data-id="${data}"
+                    //                                         data-status="${row.statusId}"
+                    //                                         data-task="${row.taskId}"
+                    //                                         data-date="${row.date}"
+                    //                                         data-timein="${row.timeIn}"
+                    //                                         data-timeout="${row.timeOut}"
+                    //                                         data-remarks="${row.remarks}"
+                    //                                         data-userid="${row.userId}"
+                    //                                     >
+                    //                                     <i class="fa-solid fa-circle-check"></i> View
+                    //                                 </button>
+                    //                             </div>`;
+                    //         } 
+                    //         else if (row.statusId == '2') {
+                    //             button = `<div class="action">
+                    //                                         <button class="tbl-decline btn btn-danger" id="aprroved-timein" title="Delete"
+                    //                                                 data-id="${data}"
+                    //                                                 data-status="${row.statusId}"
+                    //                                                 data-task="${row.taskId}"
+                    //                                                 data-date="${row.date}"
+                    //                                                 data-timein="${row.timeIn}"
+                    //                                                 data-timeout="${row.timeOut}"
+                    //                                                 data-remarks="${row.remarks}"
+                    //                                                 data-userid="${row.userId}"
+                    //                                                 disabled>
+                    //                                             <i class="fa-solid fa-circle-xmark"></i> Decline
+                    //                                         </button>
+                    //                                          <button class="tbl-approve btn btn-success" id="add-timeout" title="Time Out"
+                    //                                                 data-id="${data}"
+                    //                                                 data-status="${row.statusId}"
+                    //                                                 data-task="${row.taskId}"
+                    //                                                 data-date="${row.date}"
+                    //                                                 data-timein="${row.timeIn}"
+                    //                                                 data-timeout="${row.timeOut}"
+                    //                                                 data-remarks="${row.remarks}"
+                    //                                                 data-userid="${row.userId}"
+                    //                                             >
+                    //                                             <i class="fa-solid fa-circle-check"></i> Approve
+                    //                                         </button>
+                    //                                         <button class="tbl-view btn btn-info" id="add-timeout" title="Time Out"
+                    //                                                 data-id="${data}"
+                    //                                                 data-status="${row.statusId}"
+                    //                                                 data-task="${row.taskId}"
+                    //                                                 data-date="${row.date}"
+                    //                                                 data-timein="${row.timeIn}"
+                    //                                                 data-timeout="${row.timeOut}"
+                    //                                                 data-remarks="${row.remarks}"
+                    //                                                 data-userid="${row.userId}"
+                    //                                             >
+                    //                                             <i class="fa-solid fa-circle-check"></i> View
+                    //                                         </button>
+                    //                                     </div>`;
+                    //         }
+                    //         else{
+                    //              button = `<div class="action">
+                    //                                 <button class="tbl-decline btn btn-danger" id="aprroved-timein" title="Delete"
+                    //                                         data-id="${data}"
+                    //                                         data-status="${row.statusId}"
+                    //                                         data-task="${row.taskId}"
+                    //                                         data-date="${row.date}"
+                    //                                         data-timein="${row.timeIn}"
+                    //                                         data-timeout="${row.timeOut}"
+                    //                                         data-remarks="${row.remarks}"
+                    //                                         data-userid="${row.userId}"
+                    //                                     disabled>
+                    //                                     <i class="fa-solid fa-circle-xmark"></i> Decline
+                    //                                 </button >
+                    //                                 <button class="tbl-approve btn btn-success" id="add-timeout" title="Time Out"
+                    //                                         data-id="${data}"
+                    //                                         data-status="${row.statusId}"
+                    //                                         data-task="${row.taskId}"
+                    //                                         data-date="${row.date}"
+                    //                                         data-timein="${row.timeIn}"
+                    //                                         data-timeout="${row.timeOut}"
+                    //                                         data-remarks="${row.remarks}"
+                    //                                         data-userid="${row.userId}"
+                    //                                     disabled>
+                    //                                     <i class="fa-solid fa-circle-check"></i> Approve
+                    //                                 </button>
+                    //                                 <button class="tbl-view btn btn-info" id="add-timeout" title="Time Out"
+                    //                                         data-id="${data}"
+                    //                                         data-status="${row.statusId}"
+                    //                                         data-task="${row.taskId}"
+                    //                                         data-date="${row.date}"
+                    //                                         data-timein="${row.timeIn}"
+                    //                                         data-timeout="${row.timeOut}"
+                    //                                         data-remarks="${row.remarks}"
+                    //                                         data-userid="${row.userId}"
+                    //                                     disabled>
+                    //                                     <i class="fa-solid fa-circle-check"></i> View
+                    //                                 </button>
+                    //                             </div>`;
+                    //         }
+                            
+                    //         return button;
+                    //     }
+                    // }
+                ], responsive: true
+                // , columnDefs:  columnDefsConfig
+                , columnDefs: [
+                    { targets: 1, className: 'left-align' },
+                    { responsivePriority: 10010, targets: 6 },
+                    { responsivePriority: 10008, targets: 0 },
+                    { targets: 3, className: 'none' },
+                    { targets: 4, className: 'none' },
+                    { targets: 5, className: 'none' },
+                    { "type": "date", "targets": 0 },
+                    { width: '25%', targets: 0 },
+                    { width: '15%', targets: 2 },
+                    { width: '15%', targets: 6 },
                 ],
-                order: [[0, 'desc']], // Sort the second column (index 1) by descending order
-                columnDefs: [
-                    {
-                        targets: 0,
-                        type: 'date' // Ensure DataTables recognizes this column as date type
-                    },
-                    { width: '20%', targets: 0 },
-                    { className: 'dt-right', targets: [ 5] },
-                    { className: 'dt-left', targets: [0, 1, 2, 3, 4,] },
-                ],
-                responsive: true
+                order: [[0, 'desc']] // Sort the second column (index 1) by descending order
             };
 
             var table = $(tableId).DataTable(dtProperties);
@@ -725,8 +740,8 @@
 
                 // Iterate over each visible row and sum the rendered hours
                 $(rows).each(function () {
-                    var renderedHours = parseFloat($(this).find('td:nth-child(6)').text()) || 0; // 7th column (0-based index)
-                    var status = $(this).find('td:nth-child(7)').text(); // 7th column (0-based index)
+                    var renderedHours = parseFloat($(this).find('td:nth-child(7)').text()) || 0; // 7th column (0-based index)
+                    var status = $(this).find('td:nth-child(8)').text(); // 7th column (0-based index)
                     if(status == 'Approved'){
                         totalHours += renderedHours;
                     }
@@ -885,7 +900,6 @@
             approvemodal();
             $("#alertmodal").modal('show');
         });
-        fetchtimlogsuserselect();
         renderedHours();
     </script>
 }

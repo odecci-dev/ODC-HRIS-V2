@@ -1,5 +1,5 @@
-﻿  @using Microsoft.AspNetCore.Http;
-    @inject IHttpContextAccessor Accessor;
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor Accessor;
 @{
     ViewData["Title"] = "Time Sheet";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -377,6 +377,8 @@
         //     });
         // });
         $('#add-time-out-form').on('submit', function (event) {
+            
+            $('#add-timeout').attr('disabled','disabled');
             event.preventDefault();
             var data = {
                 userid: @Accessor.HttpContext.Session.GetString("Id")
@@ -394,6 +396,7 @@
                 if (data.status == '200') {
 
                     notifyMsg('Success!', 'Successfully Saved', 'green', 'fas fa-check');
+                    
                     window.location.href = '@Url.Action("Index", "Timelogs")';
                 }
                 else {
